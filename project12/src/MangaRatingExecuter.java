@@ -1,9 +1,14 @@
+/**
+ * ï¿½ï¿½ï¿½æƒ‰ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+ * @author K.A
+ */
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * –Ÿ‰æ‚Ìì•i‚²‚Æ‚Ì•½‹Ï•]‰¿“_‚ğZo‚µA•]‰¿‚Ì‚‚¢‡‚É•\¦‚·‚éƒNƒ‰ƒX
+ * ï¿½ï¿½ï¿½ï¿½Ìï¿½iï¿½ï¿½ï¿½Æ‚Ì•ï¿½ï¿½Ï•]ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Zï¿½oï¿½ï¿½ï¿½Aï¿½]ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½X
  * @author Taishi Nishimura
  */
 public class MangaRatingExecuter extends AbstractExecuter {
@@ -17,33 +22,33 @@ public class MangaRatingExecuter extends AbstractExecuter {
     }
 
     // /**
-    //  * PreparedStatement‚É’l‚ğƒZƒbƒg‚µ‚Ü‚·B
-    //  * ¡‰ñ‚ÌSQL‚É‚Íƒpƒ‰ƒ[ƒ^‚ª‚È‚¢‚½‚ßA‚±‚Ìƒƒ\ƒbƒh‚Í‹ó‚É‚È‚è‚Ü‚·B
-    //  * @param st PreparedStatementƒIƒuƒWƒFƒNƒg
+    //  * PreparedStatementï¿½É’lï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+    //  * ï¿½ï¿½ï¿½ï¿½ï¿½SQLï¿½É‚Íƒpï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ßAï¿½ï¿½ï¿½Ìƒï¿½ï¿½\ï¿½bï¿½hï¿½Í‹ï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½B
+    //  * @param st PreparedStatementï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g
     //  * @throws SQLException
     //  */
     @Override
     public void setQuery(PreparedStatement st) throws SQLException {
-         // ‚±‚ÌƒNƒGƒŠ‚É‚Í '?' ‚Ì‚æ‚¤‚Èƒpƒ‰ƒ[ƒ^‚Í•s—v‚È‚½‚ßAˆ—‚Í‚ ‚è‚Ü‚¹‚ñB
+         // ï¿½ï¿½ï¿½ÌƒNï¿½Gï¿½ï¿½ï¿½É‚ï¿½ '?' ï¿½Ì‚æ‚¤ï¿½Èƒpï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Í•sï¿½vï¿½È‚ï¿½ï¿½ßAï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
     }
 
     public void showResult(ResultSet r) {
-        System.out.println("--- –Ÿ‰æì•i •½‹Ï•]‰¿ƒ‰ƒ“ƒLƒ“ƒO ---");
+        System.out.println("\n--- ï¿½ï¿½ï¿½ï¿½ï¿½i ï¿½ï¿½ï¿½Ï•]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½O ---\n");
         try {
             while (r.next()) {
                 String title = r.getString("title");
                 double avgRating = r.getDouble("AVG(rating)");
-                System.out.printf("[ì•i–¼] %s%n[•½‹Ï•]‰¿] %.2f%n", title, avgRating);
+                System.out.printf("ï¿½yï¿½ï¿½iï¿½ï¿½ï¿½z %s%nï¿½yï¿½ï¿½ï¿½Ï•]ï¿½ï¿½ï¿½z %.2f%n", title, avgRating);
                 System.out.println("----------------------------------");
             }
         } catch (SQLException e) {
-            System.out.println("Œ‹‰Ê‚Ì•\¦’†‚ÉSQLƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½: " + e.toString());
+            System.out.println("ï¿½ï¿½ï¿½Ê‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½: " + e.toString());
         }
     }
 
     public static void main(String[] args) {
         MangaRatingExecuter executer = new MangaRatingExecuter();
-        // ’ŠÛƒNƒ‰ƒX‚É’è‹`‚³‚ê‚½Aˆ—‚Ì–{‘Ì‚Æ‚È‚éƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚Ü‚·B
+        // ï¿½ï¿½ï¿½ÛƒNï¿½ï¿½ï¿½Xï¿½É’ï¿½`ï¿½ï¿½ï¿½ê‚½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ì–{ï¿½Ì‚Æ‚È‚éƒï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
         executer.queryAndShow();
     }
 }

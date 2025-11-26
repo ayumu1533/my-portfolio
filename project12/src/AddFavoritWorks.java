@@ -1,34 +1,60 @@
 /**
- * ì•i‚¨‹C‚É“ü‚è“o˜^
- * @author –{‘½ ŽáØ
+ * ??i???C?????o?^
+ * @author ?{?? ???
  */
 
 import java.sql.*;
 import java.util.Scanner;
 
 public class AddFavoritWorks extends AbstractExecuter2 {
-   	private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private int userID;
+    private String title;
+    private int workID;
 
-	public String getSQLtemplate() {
-		return "INSERT INTO work_favorite_table"
-				+ " VALUES (?, ?)";
-	}
+    @Override
+    public String getSQLtemplate() {
+        return "INSERT INTO work_favorite_table VALUES (?, ?)";
+    }
 
-	public void setQuery(PreparedStatement st) throws SQLException {
-    	System.out.println("ƒ†[ƒU[ID‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢:");
-    	int userID = Integer.parseInt(scanner.nextLine());
-    	System.out.println("‚¨‹C‚É“ü‚è“o˜^‚ð‚·‚éì•i–¼‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢:");
-    	String title = scanner.nextLine();
-    	st.setInt(1, userID);
-    	try {
-        	int workID = getWorkID(title);
-        	st.setInt(2, workID);
-    	} catch (Exception e) {
-        	throw new SQLException("ì•iID‚ÌŽæ“¾‚ÉŽ¸”s‚µ‚Ü‚µ‚½: " + e.getMessage());
-    	}
-	}
+    @Override
+    public void preQuery() {
+        try {
+            System.out.print("???[?U?[ID???????????????: ");
+            userID = Integer.parseInt(scanner.nextLine());
 
-	private int getWorkID(String title) throws Exception {
+            System.out.print("???C?????o?^???????i?????????????????: ");
+            title = scanner.nextLine();
+
+            workID = getWorkID(title); // ??????ID???ï
+
+        } catch (NumberFormatException e) {
+            System.out.println("???[?U?[ID????l????????????????B");
+            throw new RuntimeException("????G???[: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("??????e???–b??????: " + e.getMessage());
+            throw new RuntimeException("?O?????G???[: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void setQuery(PreparedStatement st) throws SQLException {
+        st.setInt(1, userID);
+        st.setInt(2, workID);
+    }
+
+    @Override
+    public String checkIDSQL() {
+        return "SELECT * FROM work_favorite_table WHERE userID = ? AND workID = ?";
+    }
+
+    @Override
+    public void setExistQuery(PreparedStatement st) throws SQLException {
+        st.setInt(1, userID);
+        st.setInt(2, workID);
+    }
+
+    private int getWorkID(String title) throws Exception {
         Connection conn = DriverManager.getConnection(
             "jdbc:mysql://localhost/mangareviews?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true",
             "root", ""
@@ -44,15 +70,16 @@ public class AddFavoritWorks extends AbstractExecuter2 {
             return id;
         } else {
             rs.close(); st.close(); conn.close();
-            throw new Exception("ì•i‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+            throw new Exception("?w??????i????????????B");
         }
     }
 
-	public void showResult(int affectedRows) {
-		if (affectedRows > 0) {
-			System.out.println("‚¨‹C‚É“ü‚è“o˜^‚ª¬Œ÷‚µ‚Ü‚µ‚½B");
-		} else {
-			System.out.println("‚¨‹C‚É“ü‚è“o˜^‚ÉŽ¸”s‚µ‚Ü‚µ‚½B");
-		}
-	}
+    @Override
+    public void showResult(int affectedRows) {
+        if (affectedRows > 0) {
+            System.out.println("???C?????o?^??????????????B");
+        } else {
+            System.out.println("???C?????o?^????s????????B");
+        }
+    }
 }

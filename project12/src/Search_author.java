@@ -1,6 +1,6 @@
 /**
- * ìÒ‚ğŒŸõ‚·‚éƒvƒƒOƒ‰ƒ€
- * @author Kouki Ando
+ * ï¿½ï¿½Ò‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+ * @author K.A
  */
 import java.sql.*;
 import java.util.*;
@@ -10,19 +10,21 @@ public class Search_author extends AbstractExecuter {
 	private int selectedAuthorID = -1;
 
 	@Override
-	public String getSQLtemplate() {
-		return "SELECT title, summary FROM work_table " +
-		       "WHERE workID IN (" +
-		       "  SELECT workID FROM writing_table WHERE authorID = ?)";
+public String getSQLtemplate() {
+	return "SELECT w.title, w.summary, a.authorname " +
+	       "FROM work_table w " +
+	       "JOIN writing_table wt ON w.workID = wt.workID " +
+	       "JOIN author_table a ON wt.authorID = a.authorID " +
+	       "WHERE a.authorID = ?";
 	}
 
 	@Override
 	public void setQuery(PreparedStatement st) throws SQLException {
-		System.out.print("ìÒ–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢F");
+		System.out.print("ï¿½ï¿½Ò–ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F");
 		String inputName = scanner.nextLine().trim();
 
 		Connection conn = DriverManager.getConnection(
-			"jdbc:mysql://localhost/mangareview?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true",
+			"jdbc:mysql://localhost/mangareviews?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true",
 			"root", ""
 		);
 		PreparedStatement stAuthors = conn.prepareStatement(
@@ -41,51 +43,56 @@ public class Search_author extends AbstractExecuter {
 		stAuthors.close();
 
 		if (authorIDs.isEmpty()) {
-			System.out.println("‚»‚Ì–¼‘O‚ÌìÒ‚Í‚¢‚Ü‚¹‚ñB");
+			System.out.println("ï¿½ï¿½ï¿½Ì–ï¿½ï¿½Oï¿½Ìï¿½Ò‚Í‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
 			conn.close();
-			throw new SQLException("ŠY“–ìÒ‚È‚µ");
+			throw new SQLException("ï¿½Yï¿½ï¿½ï¿½ï¿½Ò‚È‚ï¿½");
 		}
 
 		if (authorIDs.size() == 1) {
 			selectedAuthorID = authorIDs.get(0);
-			System.out.println("ìÒID: " + selectedAuthorID);
+			System.out.println("ï¿½ï¿½ï¿½ID: " + selectedAuthorID);
 		} else {
-			System.out.println("“¯©“¯–¼‚ÌìÒ‚ª•¡”Œ©‚Â‚©‚è‚Ü‚µ‚½F");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½Ò‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½F");
 			for (int id : authorIDs) {
-				System.out.println("ìÒID: " + id);
+				System.out.println("ï¿½ï¿½ï¿½ID: " + id);
 			}
 			while (true) {
-				System.out.print("ìÒID‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢F");
+				System.out.print("ï¿½ï¿½ï¿½IDï¿½ï¿½Iï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F");
 				int input = Integer.parseInt(scanner.nextLine());
 				if (authorIDs.contains(input)) {
 					selectedAuthorID = input;
 					break;
 				} else {
-					System.out.println("ƒŠƒXƒg‚É‚ ‚éID‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢B");
+					System.out.println("ï¿½ï¿½ï¿½Xï¿½gï¿½É‚ï¿½ï¿½ï¿½IDï¿½ï¿½Iï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B");
 				}
 			}
 		}
 		conn.close();
-		st.setInt(1, selectedAuthorID);  // © ³‚µ‚¢êŠ‚É’u‚­
+		st.setInt(1, selectedAuthorID);  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êŠï¿½É’uï¿½ï¿½
 	}
 
 	@Override
 	public void showResult(ResultSet r) {
 		try {
-			boolean found = false;
-			while (r.next()) {
+			if (!r.next()) {
+				System.out.println("ï¿½ï¿½ï¿½Ìï¿½Ò‚Ìï¿½iï¿½Í“oï¿½^ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
+				return;
+			}
+
+			String authorName = r.getString("authorname");
+			System.out.println("\n---ï¿½w" + authorName + "ï¿½xï¿½Ìï¿½ï¿½Mï¿½ï¿½iï¿½ê——---\n");
+
+			do {
 				String title = r.getString("title");
 				String summary = r.getString("summary");
-				System.out.println("ƒ^ƒCƒgƒ‹: " + title);
-				System.out.println("ŠT—v: " + summary);
+				System.out.println("ï¿½yï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½z" + title);
+				System.out.println("ï¿½yï¿½Tï¿½vï¿½z" + summary);
 				System.out.println("-----------------------------");
-				found = true;
-			}
-			if (!found) {
-				System.out.println("‚±‚ÌìÒ‚Ìì•i‚Í“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
-			}
+			} while (r.next());
+
 		} catch (SQLException se) {
-			System.out.println("ƒGƒ‰[: " + se.toString());
+			System.out.println("ï¿½Gï¿½ï¿½ï¿½[: " + se.toString());
 		}
 	}
+
 }

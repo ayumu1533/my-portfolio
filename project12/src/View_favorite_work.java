@@ -1,5 +1,5 @@
 /**
- * お気に入り作品の検索に責任を持つクラス
+ * お気に入り作品の表示に責任を持つクラス
  * @author Ayumu Sato
  */
 
@@ -18,7 +18,7 @@ public class View_favorite_work extends AbstractExecuter {
 	}
 
 	public void setQuery(PreparedStatement st) throws SQLException {
-		System.out.println("自分のユーザーネームを入れてください");
+		System.out.println("自分のユーザーIDを入れてください");
 
 		int userID = Integer.parseInt(scanner.nextLine());
 		// 本来はここで入力された文字列が不正なものでないか検査した方が良い
@@ -28,11 +28,13 @@ public class View_favorite_work extends AbstractExecuter {
 
 	public void showResult(ResultSet r) {
 		try {
+			System.out.println("\n---お気に入りの作品---\n");
 			while(r.next()) {
 				System.out.println(
 						"【作品ID】"+r.getInt("workID")+"\t"+
 						"【タイトル】"+r.getString("title")+"\t"+
 						"【要約】"+r.getString("summary"));
+				System.out.println("-----------------------------");
 			}
 
 		} catch (SQLException se) {

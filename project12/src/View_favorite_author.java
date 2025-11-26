@@ -1,5 +1,5 @@
 /**
- * お気に入り著者の検索に責任を持つクラス
+ * お気に入り著者の表示に責任を持つクラス
  * @author Ayumu Sato
  */
 
@@ -18,7 +18,7 @@ public class View_favorite_author extends AbstractExecuter {
 	}
 
 	public void setQuery(PreparedStatement st) throws SQLException {
-		System.out.println("自分のユーザーネームを入れてください");
+		System.out.println("自分のユーザーIDを入れてください");
 
 		int userID = Integer.parseInt(scanner.nextLine());
 		// 本来はここで入力された文字列が不正なものでないか検査した方が良い
@@ -28,11 +28,13 @@ public class View_favorite_author extends AbstractExecuter {
 
 	public void showResult(ResultSet r) {
 		try {
+			System.out.println("\n---お気に入りの著者---\n");
 			while(r.next()) {
 				System.out.println(
 						"【著者ID】"+r.getInt("authorID")+"\t"+
 						"【著者氏名】"+r.getString("authorname")+"\t"
                 );
+				System.out.println("-----------------------------");
             }
 		} catch (SQLException se) {
 			System.out.println("SQL Error 2phss: " + se.toString() + " "

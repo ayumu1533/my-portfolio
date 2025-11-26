@@ -1,3 +1,7 @@
+/**
+ * ï¿½ï¿½Ò‚ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+ * @author Ayumu Sato
+ */
 import java.sql.*;
 import java.util.Scanner;
 
@@ -7,15 +11,26 @@ public class Add_author extends AbstractExecuter2 {
 
 	@Override
 	public void preQuery() {
-		Scanner lane = new Scanner(System.in);
-		try {
-			System.out.print("ìÒID‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
-			authorID = Integer.parseInt(lane.nextLine());
+		Scanner line = new Scanner(System.in);
+		try (
+			Connection con = DriverManager.getConnection(
+				"jdbc:mysql://localhost/mangareviews?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true",
+				"root", ""
+			);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT MAX(authorID) FROM author_table")
+		) {
+			if (rs.next()) {
+				authorID = rs.getInt(1) + 1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ğ‘«‚ï¿½ï¿½ï¿½ï¿½ï¿½
+			} else {
+				authorID = 1; // ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½1
+			}
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½ID: " + authorID);
+			System.out.print("ï¿½ï¿½Ò–ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			authorName = line.nextLine();
 
-			System.out.print("ìÒ–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
-			authorName = lane.nextLine();
-		} catch (NumberFormatException e) {
-			System.out.println("³‚µ‚¢ID‚â–¼‘O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+		} catch (SQLException e) {
+			System.out.println("ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½Gï¿½ï¿½ï¿½[: " + e.getMessage());
 		}
 	}
 
@@ -33,19 +48,9 @@ public class Add_author extends AbstractExecuter2 {
 	@Override
 	public void showResult(int affectedRows) {
 		if (affectedRows > 0) {
-			System.out.println("ìÒ“o˜^‚ª¬Œ÷‚µ‚Ü‚µ‚½B");
+			System.out.println("ï¿½ï¿½Ò“oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
 		} else {
-			System.out.println("ìÒ“o˜^‚É¸”s‚µ‚Ü‚µ‚½B");
+			System.out.println("ï¿½ï¿½Ò“oï¿½^ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
 		}
-	}
-
-	@Override
-	public String checkIDSQL() {
-		return "SELECT authorID FROM author_table WHERE authorID = ?";
-	}
-
-	@Override
-	public void setExistQuery(PreparedStatement st) throws SQLException {
-		st.setInt(1, authorID);
 	}
 }

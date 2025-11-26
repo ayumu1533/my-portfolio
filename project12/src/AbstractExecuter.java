@@ -18,7 +18,7 @@ public abstract class AbstractExecuter {
 
 			// ê⁄ë±
 			Connection conn = DriverManager.getConnection(
-				"jdbc:mysql://localhost/mangareview?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true", 
+				"jdbc:mysql://localhost/mangareviews?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true", 
 				"root", ""
 				);		 
 

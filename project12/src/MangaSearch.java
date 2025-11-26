@@ -15,6 +15,7 @@ public class MangaSearch {
         System.out.println("–Ÿ‰æ–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢:");
         String title = scanner.nextLine();
 
+        System.out.println("\n---w" +title+ "x‚ÌŒŸõŒ‹‰Ê---");
         MangaDetailSearch s1 = new MangaDetailSearch(title);
         MangaReviewSearch s2 = new MangaReviewSearch(title);
 
