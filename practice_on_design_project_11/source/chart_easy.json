@@ -1,0 +1,63 @@
+[
+  {"time": 1000,  "lane": 1, "type": "normal"},
+  {"time": 2000, "lane": 2, "type": "normal"},
+  {"time": 3000, "lane": 1, "type": "normal"},
+  {"time": 4000, "lane": 2, "type": "rapid", "hit_goal": 30},
+  {"time": 5500, "lane": 1, "type": "normal"},
+  {"time": 6500, "lane": 2, "type": "normal"},
+
+  {"time": 8500, "lane": 0, "type": "normal"},
+  {"time": 9500, "lane": 3, "type": "normal"},
+  {"time": 10000, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10100, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10200, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10300, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10400, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10500, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10600, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 10700, "lane": 0, "type": "rapid", "hit_goal": 6},
+  {"time": 11700, "lane": 3, "type": "normal"},
+  {"time": 12700, "lane": 0, "type": "normal"},
+
+
+
+  {"time": 13700, "lane": 1, "type": "rapid", "hit_goal": 30},
+  {"time": 14700, "lane": 2, "type": "normal"},
+  {"time": 15700, "lane": 1, "type": "normal"},
+  {"time": 16700, "lane": 1, "type": "normal"},
+  {"time": 17700, "lane": 2, "type": "normal"},
+
+  {"time": 18700, "lane": 3, "type": "normal"},
+  {"time": 19700, "lane": 0, "type": "normal"},
+  {"time": 21700, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 21800, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 21900, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 22000, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 22100, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 22200, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 22300, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 22400, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 23400, "lane": 0, "type": "normal"},
+  {"time": 24400, "lane": 0, "type": "normal"},
+
+
+
+  {"time": 25400, "lane": 3, "type": "normal"},
+  {"time": 26500, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 26600, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 26700, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 26800, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 26900, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 27000, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 27100, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 27200, "lane": 3, "type": "rapid", "hit_goal": 6},
+  {"time": 28200, "lane": 0, "type": "normal"},
+  {"time": 29200, "lane": 0, "type": "normal"},
+
+  {"time": 30200, "lane": 1, "type": "normal"},
+  {"time": 31700, "lane": 1, "type": "rapid", "hit_goal": 30},
+  {"time": 32700, "lane": 2, "type": "normal"},
+  {"time": 33700, "lane": 1, "type": "normal"},
+  {"time": 34700, "lane": 1, "type": "normal"},
+  {"time": 35700, "lane": 2, "type": "normal"}
+]
