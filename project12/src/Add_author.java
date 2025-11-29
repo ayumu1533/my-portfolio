@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½Ò‚ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
- * @author Ayumu Sato
+ * ìÒ‚ğ“o˜^‚·‚éƒvƒƒOƒ‰ƒ€
+ * @author Kouki Ando
  */
 import java.sql.*;
 import java.util.Scanner;
@@ -21,16 +21,16 @@ public class Add_author extends AbstractExecuter2 {
 			ResultSet rs = stmt.executeQuery("SELECT MAX(authorID) FROM author_table")
 		) {
 			if (rs.next()) {
-				authorID = rs.getInt(1) + 1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ğ‘«‚ï¿½ï¿½ï¿½ï¿½ï¿½
+				authorID = rs.getInt(1) + 1;//‚±‚±‚Å1‚ğ‘«‚·ˆ—
 			} else {
-				authorID = 1; // ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½1
+				authorID = 1; // ƒe[ƒuƒ‹‚ª‹ó‚È‚ç1
 			}
-			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½ID: " + authorID);
-			System.out.print("ï¿½ï¿½Ò–ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.println("©“®Š„‚è“–‚Ä‚³‚ê‚½ìÒID: " + authorID);
+			System.out.print("ìÒ–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			authorName = line.nextLine();
 
 		} catch (SQLException e) {
-			System.out.println("ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½Gï¿½ï¿½ï¿½[: " + e.getMessage());
+			System.out.println("ƒf[ƒ^ƒx[ƒXƒGƒ‰[: " + e.getMessage());
 		}
 	}
 
@@ -48,9 +48,9 @@ public class Add_author extends AbstractExecuter2 {
 	@Override
 	public void showResult(int affectedRows) {
 		if (affectedRows > 0) {
-			System.out.println("ï¿½ï¿½Ò“oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ìÒ“o˜^‚ª¬Œ÷‚µ‚Ü‚µ‚½B");
 		} else {
-			System.out.println("ï¿½ï¿½Ò“oï¿½^ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ìÒ“o˜^‚É¸”s‚µ‚Ü‚µ‚½B");
 		}
 	}
 }

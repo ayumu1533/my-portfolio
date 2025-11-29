@@ -54,11 +54,12 @@ project12/
 ### (1) データベースの準備
 
 1.  **MySQL**を起動します。
-2.  `MangaReviews.sql`ファイルを実行し、データベース(`MangaReviews`)、テーブル構造、および初期データを構築します。
-3.  Javaファイル内のJDBC接続情報（`jdbc:mysql://localhost/mangareviews?useSSL=false...`）がご自身のDB環境と一致していることを確認します。
+2.  mysqlクライアント(bin/mysql)を実行して、インポート先のDBを作っておく。
+3. 一度mysqlクライアントを終了し、再度mysqlクライアントを以下のように実行する。
+`"bin/mysql" -u root -h localhost <DB名> < MangaReviews.sql`
 
 ### (2) 実行
 
-1.  `src`内の`.java`ファイルをコンパイルします。（例: `javac src/*.java -d class`）
-2.  `CourseManager4.java`をメインクラスとして実行します。（例: `java -cp .;./mysql-connector-java-*.jar CourseManager4`）
+1.  src内の.javaファイルをコンパイルします。（例: `javac -encoding Windows-31J -d class src/*.java`）
+2.  CourseManager4.javaをメインクラスとして実行します。（例: `java -cp "...\mysql-8.4.5-winx64\mysql-connector-j-9.3.0.jar;class" CourseManager4`）
 3.  コンソールに表示されるメニュー番号（1〜11）を入力して、各機能を実行します。

@@ -1,6 +1,6 @@
 /**
- * ??i???C?????o?^
- * @author ?{?? ???
+ * 作品お気に入り登録
+ * @author 本多 若菜
  */
 
 import java.sql.*;
@@ -20,20 +20,20 @@ public class AddFavoritWorks extends AbstractExecuter2 {
     @Override
     public void preQuery() {
         try {
-            System.out.print("???[?U?[ID???????????????: ");
+            System.out.print("ユーザーIDを入力してください: ");
             userID = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("???C?????o?^???????i?????????????????: ");
+            System.out.print("お気に入り登録をする作品名を入力してください: ");
             title = scanner.nextLine();
 
-            workID = getWorkID(title); // ??????ID???擾
+            workID = getWorkID(title); // ここでIDも取得
 
         } catch (NumberFormatException e) {
-            System.out.println("???[?U?[ID????l????????????????B");
-            throw new RuntimeException("????G???[: " + e.getMessage());
+            System.out.println("ユーザーIDは数値で入力してください。");
+            throw new RuntimeException("入力エラー: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("??????e???肪??????: " + e.getMessage());
-            throw new RuntimeException("?O?????G???[: " + e.getMessage());
+            System.out.println("入力内容に誤りがあります: " + e.getMessage());
+            throw new RuntimeException("前処理エラー: " + e.getMessage());
         }
     }
 
@@ -70,16 +70,16 @@ public class AddFavoritWorks extends AbstractExecuter2 {
             return id;
         } else {
             rs.close(); st.close(); conn.close();
-            throw new Exception("?w??????i????????????B");
+            throw new Exception("指定された作品は見つかりません。");
         }
     }
 
     @Override
     public void showResult(int affectedRows) {
         if (affectedRows > 0) {
-            System.out.println("???C?????o?^??????????????B");
+            System.out.println("お気に入り登録が成功しました。");
         } else {
-            System.out.println("???C?????o?^????s????????B");
+            System.out.println("お気に入り登録に失敗しました。");
         }
     }
 }

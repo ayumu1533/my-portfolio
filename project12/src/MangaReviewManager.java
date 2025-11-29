@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½eï¿½ÉÓ”Cï¿½ï¿½ï¿½ï¿½ï¿½ÂƒNï¿½ï¿½ï¿½X
- * @author T.N 
+ * –Ÿ‰æ‚ÌƒŒƒrƒ…[“Še‚ÉÓ”C‚ğ‚ÂƒNƒ‰ƒX
+ * @author Taishi Nishimuras 
  */
 
 
@@ -26,13 +26,13 @@ public class MangaReviewManager extends AbstractExecuter2 {
     @Override
     public void preQuery() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½ÎÛ‚Ìï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ > ");
+        System.out.print("ƒŒƒrƒ…[‘ÎÛ‚Ìì•i–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ");
         this.workTitle = sc.nextLine();
-        System.out.print("ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ìƒjï¿½bï¿½Nï¿½lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ > ");
+        System.out.print("‚ ‚È‚½‚ÌƒjƒbƒNƒl[ƒ€‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ");
         this.userNickname = sc.nextLine();
-        System.out.print("ï¿½]ï¿½ï¿½ï¿½i1-5ï¿½jï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ > ");
+        System.out.print("•]‰¿i1-5j‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ");
         this.rating = Integer.parseInt(sc.nextLine());
-        System.out.print("ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ > ");
+        System.out.print("ƒŒƒrƒ…[“à—e‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ");
         this.content = sc.nextLine();
 
         try (Connection conn = DriverManager.getConnection(
@@ -42,26 +42,26 @@ public class MangaReviewManager extends AbstractExecuter2 {
             try (PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(reviewID) FROM review_table")) {
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
-                    // ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìê‡ï¿½AMAX()ï¿½ï¿½0ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½Ìê‡ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½nï¿½ß‚ï¿½
+                    // ƒe[ƒuƒ‹‚ª‹ó‚Ìê‡AMAX()‚Í0‚ğ•Ô‚·‚±‚Æ‚ª‚ ‚é‚Ì‚ÅA‚»‚Ìê‡‚Í1‚©‚çn‚ß‚é
                     this.reviewId = rs.getInt(1) + 1;
                 } else {
-                    // ï¿½ï¿½ï¿½ÊƒZï¿½bï¿½gï¿½ï¿½ï¿½ï¿½iï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½É‹ï¿½jï¿½Ìê‡ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½
+                    // Œ‹‰ÊƒZƒbƒg‚ª‹óiƒe[ƒuƒ‹‚ªŠ®‘S‚É‹ój‚Ìê‡‚à1‚©‚ç
                     this.reviewId = 1;
                 }
             }
 
             this.userId = findId(conn, "SELECT userID FROM user_table WHERE nickname = ?", this.userNickname);
             if (this.userId == null) {
-                throw new RuntimeException("ï¿½Gï¿½ï¿½ï¿½[: ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½u" + this.userNickname + "ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
+                throw new RuntimeException("ƒGƒ‰[: ƒ†[ƒU[u" + this.userNickname + "v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
             }
 
             this.workId = findId(conn, "SELECT workID FROM work_table WHERE title = ?", this.workTitle);
             if (this.workId == null) {
-                throw new RuntimeException("ï¿½Gï¿½ï¿½ï¿½[: ï¿½ï¿½iï¿½u" + this.workTitle + "ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
+                throw new RuntimeException("ƒGƒ‰[: ì•iu" + this.workTitle + "v‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B", e);
+            throw new RuntimeException("ƒf[ƒ^ƒx[ƒXŒŸõ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", e);
         }
     }
 
@@ -83,9 +83,9 @@ public class MangaReviewManager extends AbstractExecuter2 {
     @Override
     public void showResult(int affectedRows) {
         if (affectedRows > 0) {
-            System.out.println("ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½Éï¿½ï¿½ï¿½É“ï¿½ï¿½eï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½I (ID: " + this.reviewId + ")");
+            System.out.println("ƒŒƒrƒ…[‚ğƒf[ƒ^ƒx[ƒX‚É³í‚É“Še‚µ‚Ü‚µ‚½I (ID: " + this.reviewId + ")");
         } else {
-            System.out.println("ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½Ì“ï¿½ï¿½eï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+            System.out.println("ƒŒƒrƒ…[‚Ì“Še‚É¸”s‚µ‚Ü‚µ‚½B");
         }
     }
 
@@ -101,7 +101,7 @@ public class MangaReviewManager extends AbstractExecuter2 {
         return null;
     }
 
-    //ï¿½@ï¿½È‰ï¿½ï¿½ï¿½mainï¿½ï¿½ï¿½Å‚Ìï¿½ï¿½sï¿½Ìdï¿½ï¿½
+    //@ˆÈ‰º‚Ímain•¶‚Å‚ÌÀs‚Ìd•û
 
     // public static void main(String[] args) {
     //     MangaReviewManager manager = new MangaReviewManager();

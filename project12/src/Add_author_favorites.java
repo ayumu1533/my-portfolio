@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½ï¿½ï¿½Ò‚ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
- * @author Ayumu Sato
+ * ‚¨‹C‚É“ü‚èìÒ‚ğ“o˜^‚·‚éƒvƒƒOƒ‰ƒ€
+ * @author Kouki Ando
  */
 import java.sql.*;
 import java.util.Scanner;
@@ -13,13 +13,13 @@ public class Add_author_favorites extends AbstractExecuter2 {
 	public void preQuery() {
 		Scanner lane = new Scanner(System.in);
 		try {
-			System.out.print("ï¿½ï¿½ï¿½[ï¿½Uï¿½[IDï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ƒ†[ƒU[ID‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			userID = Integer.parseInt(lane.nextLine());
 
-			System.out.print("ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("‚¨‹C‚É“ü‚è“o˜^‚·‚éìÒID‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			authorID = Integer.parseInt(lane.nextLine());
 		} catch (NumberFormatException e) {
-			System.out.println("ï¿½ï¿½ï¿½lï¿½Æ‚ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("”’l‚Æ‚µ‚Ä³‚µ‚¢ID‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
 		}
 	}
 
@@ -37,9 +37,9 @@ public class Add_author_favorites extends AbstractExecuter2 {
 	@Override
 	public void showResult(int affectedRows) {
 		if (affectedRows > 0) {
-			System.out.println("ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("‚¨‹C‚É“ü‚è“o˜^‚ª¬Œ÷‚µ‚Ü‚µ‚½B");
 		} else {
-			System.out.println("ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½ï¿½oï¿½^ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("‚¨‹C‚É“ü‚è“o˜^‚É¸”s‚µ‚Ü‚µ‚½B");
 		}
 	}
 

@@ -1,6 +1,6 @@
 /**
- * ï¿½}ï¿½ï¿½ï¿½nï¿½ï¿½SQLï¿½Ìï¿½ï¿½sï¿½ÉÓ”Cï¿½ï¿½ï¿½ï¿½ï¿½ÂƒNï¿½ï¿½ï¿½Xï¿½Ìï¿½ï¿½`ï¿½Æ‚È‚é’Šï¿½ÛƒNï¿½ï¿½ï¿½X
- *  @author K.A
+ * ‘}“üŒn‚ÌSQL‚ÌÀs‚ÉÓ”C‚ğ‚ÂƒNƒ‰ƒX‚Ì—Œ`‚Æ‚È‚é’ŠÛƒNƒ‰ƒX
+ *  @author kouki Ando
 */
 import java.sql.*;
 
@@ -8,19 +8,19 @@ public abstract class AbstractExecuter2 {
 	public abstract String getSQLtemplate();
 	public abstract void setQuery(PreparedStatement st) throws SQLException;
 	public abstract void showResult(int affectedRows);
-	public void preQuery() {}// ï¿½Kï¿½vï¿½É‰ï¿½ï¿½ï¿½ï¿½ÄƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½h. ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ç‚»ï¿½Ì‚Ü‚Ügï¿½ï¿½
+	public void preQuery() {}// •K—v‚É‰‚¶‚ÄƒI[ƒo[ƒ‰ƒCƒh. ‘Oˆ—‚ª‚¢‚ç‚È‚¢‚È‚ç‚»‚Ì‚Ü‚Üg‚¤
 
-	//IDï¿½Ìdï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½Nï¿½pSQLï¿½ï¿½Ô‚ï¿½ï¿½iIDï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½uï¿½Nï¿½ï¿½ï¿½Xï¿½È‚ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½j
+	//ID‚Ìd•¡ƒ`ƒFƒbƒN—pSQL‚ğ•Ô‚·iID‚ğ‘}“ü‚·‚éƒTƒuƒNƒ‰ƒX‚È‚çƒI[ƒo[ƒ‰ƒCƒhj
 	public String checkIDSQL() {
-		return null; //ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Å‚Ídï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½Nï¿½È‚ï¿½
+		return null; //ƒfƒtƒHƒ‹ƒg‚Å‚Íd•¡ƒ`ƒFƒbƒN‚È‚µ
 	}
-	//ï¿½`ï¿½Fï¿½bï¿½Nï¿½pSQLï¿½É‘Î‚ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½İ’ï¿½icheckIDSQLï¿½ï¿½ï¿½Kï¿½vï¿½ÈƒTï¿½uï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½j
+	//ƒ`ƒFƒbƒN—pSQL‚É‘Î‚·‚éƒpƒ‰ƒ[ƒ^İ’èicheckIDSQL‚ª•K—v‚ÈƒTƒuƒNƒ‰ƒX‚ªƒI[ƒo[ƒ‰ƒCƒhj
 	public void setExistQuery(PreparedStatement st) throws SQLException {
-		// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Í‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+		// ƒfƒtƒHƒ‹ƒg‚Í‰½‚à‚µ‚È‚¢
 	}
 	public final void InsertAndShow() {
 		try {
-			//ï¿½Kï¿½vï¿½È‚ï¿½Oï¿½ï¿½ï¿½ï¿½
+			//•K—v‚È‚ç‘Oˆ—
 			preQuery();
 
 			Connection conn = DriverManager.getConnection(
@@ -28,14 +28,14 @@ public abstract class AbstractExecuter2 {
 				"root", ""
 			);
 
-			//IDï¿½dï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
+			//IDd•¡ƒ`ƒFƒbƒN
 			String existSQL = checkIDSQL();
 			if (existSQL != null) {
 				PreparedStatement checkSt = conn.prepareStatement(existSQL);
 				setExistQuery(checkSt);
 				ResultSet rs = checkSt.executeQuery();
-				if (rs.next()){	//rs.next()ï¿½ï¿½tureï¿½È‚ç“¯ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½
-					System.out.println("ï¿½wï¿½è‚³ï¿½ê‚½IDï¿½Í‚ï¿½ï¿½Å‚É‘ï¿½ï¿½İ‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ğ’†~ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B");
+				if (rs.next()){	//rs.next()‚ªture‚È‚ç“¯ˆêID‚ª‘¶İ‚·‚é‚Æ‚¢‚¤–
+					System.out.println("w’è‚³‚ê‚½ID‚Í‚·‚Å‚É‘¶İ‚µ‚Ä‚¢‚Ü‚·B‘}“üˆ—‚ğ’†~‚µ‚Ü‚·B");
 					rs.close();
 					checkSt.close();
 					conn.close();
@@ -44,7 +44,7 @@ public abstract class AbstractExecuter2 {
 				rs.close();
 				checkSt.close();
 			}
-			// ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ‘}“üˆ—
 			PreparedStatement st = conn.prepareStatement(getSQLtemplate());
 			setQuery(st);
 			int affectedRows = st.executeUpdate();

@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½iï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
- * @author K.A
+ * ì•i‚ğ“o˜^‚·‚éƒvƒƒOƒ‰ƒ€
+ * @author Kouki Ando
  */
 import java.sql.*;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class Add_writing extends AbstractExecuter2 {
 	@Override
 	public void preQuery() {
 		Scanner scanner = new Scanner(System.in);
-		try (// ï¿½Ú‘ï¿½...ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mangareviewï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ì‚ÅAmanfareviewsï¿½ÉÚ‘ï¿½ï¿½ï¿½ï¿½ï¿½Û‚Í‹Cï¿½ï¿½tï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		try (// Ú‘±...‚±‚±‚Åmangareview‚ğ‘I‘ğ‚µ‚Ä‚¢‚é‚Ì‚ÅAmanfareviews‚ÉÚ‘±‚·‚éÛ‚Í‹C‚ğ•t‚¯‚Ä‚­‚¾‚³‚¢
 			Connection con = DriverManager.getConnection(
 				"jdbc:mysql://localhost/mangareview?useSSL=false&characterEncoding=utf8&useServerPrepStmts=true", 
 				"root", ""
@@ -24,18 +24,18 @@ public class Add_writing extends AbstractExecuter2 {
 			if (rs.next()) {
 				workID = rs.getInt(1) + 1;
 			} else {
-				workID = 1;//0ï¿½Ìê‡
+				workID = 1;//0‚Ìê‡
 			}
-			System.out.println("ï¿½ï¿½iID: " + workID); // ï¿½mï¿½Fï¿½\ï¿½ï¿½
+			System.out.println("ì•iID: " + workID); // Šm”F•\¦
 
-			System.out.print("ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ì•i–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			title = scanner.nextLine();
 
-			System.out.print("ï¿½ï¿½iï¿½Tï¿½vï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ì•iŠT—v‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			summary = scanner.nextLine();
 
 		} catch (SQLException e) {
-			System.out.println("ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½Ú‘ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½IDï¿½æ“¾ï¿½ï¿½ï¿½ÉƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½: " + e.getMessage());
+			System.out.println("ƒf[ƒ^ƒx[ƒXÚ‘±‚Ü‚½‚ÍIDæ“¾‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½: " + e.getMessage());
 		}
 	}
 
@@ -54,9 +54,9 @@ public class Add_writing extends AbstractExecuter2 {
 	@Override
 	public void showResult(int affectedRows) {
 		if (affectedRows > 0) {
-			System.out.println("ï¿½ï¿½iï¿½Ì“oï¿½^ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ì•i‚Ì“o˜^‚É¬Œ÷‚µ‚Ü‚µ‚½B");
 		} else {
-			System.out.println("ï¿½ï¿½iï¿½Ì“oï¿½^ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ì•i‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½B");
 		}
 	}
 }

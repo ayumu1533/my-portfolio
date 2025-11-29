@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
- * @author K.A
+ * ƒ†[ƒU[‚ğ“o˜^‚·‚éƒvƒƒOƒ‰ƒ€
+ * @author Kouki Ando
  */
 import java.sql.*;
 import java.util.Scanner;
@@ -29,22 +29,22 @@ public class Add_user extends AbstractExecuter2 {
 			} else {
 				userID = 1;
 			}
-			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½[ï¿½Uï¿½[ID: " + userID);
+			System.out.println("©“®Š„‚è“–‚Ä‚³‚ê‚½ƒ†[ƒU[ID: " + userID);
 
-			System.out.print("ï¿½jï¿½bï¿½Nï¿½lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ƒjƒbƒNƒl[ƒ€‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			nickname = sc.nextLine();
 
-			System.out.print("ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ƒ[ƒ‹ƒAƒhƒŒƒX‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			email = sc.nextLine();
 
-			// ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½dï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
+			// ƒ[ƒ‹d•¡ƒ`ƒFƒbƒN
 			String existSQL = checkIDSQL();
 			if (existSQL != null) {
 				PreparedStatement checkSt = conn.prepareStatement(existSQL);
 				setExistQuery(checkSt);
 				ResultSet rs = checkSt.executeQuery();
 				if (rs.next()) {
-					System.out.println("ï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½Xï¿½Í‚ï¿½ï¿½Å‚É“oï¿½^ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ğ’†~ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B");
+					System.out.println("‚±‚Ìƒ[ƒ‹ƒAƒhƒŒƒX‚Í‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B‘}“üˆ—‚ğ’†~‚µ‚Ü‚·B");
 					cancel = true;
 					rs.close();
 					checkSt.close();
@@ -55,11 +55,11 @@ public class Add_user extends AbstractExecuter2 {
 				checkSt.close();
 			}
 
-			System.out.print("ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ");
+			System.out.print("ƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 			password = sc.nextLine();
 
 		} catch (SQLException e) {
-			System.out.println("ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½Gï¿½ï¿½ï¿½[: " + e.getMessage());
+			System.out.println("ƒf[ƒ^ƒx[ƒXƒGƒ‰[: " + e.getMessage());
 			cancel = true;
 		}
 	}
@@ -79,7 +79,7 @@ public class Add_user extends AbstractExecuter2 {
 
 	@Override
 	public void setQuery(PreparedStatement st) throws SQLException {
-		if (cancel) throw new SQLException("ï¿½oï¿½^ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Ï‚İB");
+		if (cancel) throw new SQLException("“o˜^ƒLƒƒƒ“ƒZƒ‹Ï‚İB");
 		st.setInt(1, userID);
 		st.setString(2, nickname);
 		st.setString(3, email);
@@ -89,11 +89,11 @@ public class Add_user extends AbstractExecuter2 {
 	@Override
 	public void showResult(int affectedRows) {
 		if (cancel) {
-			System.out.println("ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½oï¿½^ï¿½Ísï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ƒ†[ƒU[“o˜^‚Ís‚í‚ê‚Ü‚¹‚ñ‚Å‚µ‚½B");
 		} else if (affectedRows > 0) {
-			System.out.println("ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ƒ†[ƒU[“o˜^‚ª¬Œ÷‚µ‚Ü‚µ‚½B");
 		} else {
-			System.out.println("ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½oï¿½^ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+			System.out.println("ƒ†[ƒU[“o˜^‚É¸”s‚µ‚Ü‚µ‚½B");
 		}
 	}
 }

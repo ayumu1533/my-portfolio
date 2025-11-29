@@ -1,6 +1,6 @@
 /**
- * ï¿½ï¿½ï¿½ï¿½ÌÚ×Œï¿½ï¿½ï¿½ï¿½ÉÓ”Cï¿½ï¿½ï¿½ï¿½ï¿½ÂƒNï¿½ï¿½ï¿½X
- * @author h.w
+ * –Ÿ‰æ‚ÌÚ×ŒŸõ‚ÉÓ”C‚ğ‚ÂƒNƒ‰ƒX
+ * @author honda wakana
  */
 
 import java.sql.*;
@@ -23,17 +23,17 @@ public class MangaDetailSearch extends AbstractExecuter {
 	}
 
 	public void setQuery(PreparedStatement st) throws SQLException {
-		st.setString(1, title); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ ? ï¿½ÌêŠï¿½É’lï¿½ğ–„‚ßï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½
+		st.setString(1, title); // ‚±‚±‚ÅSQL‚Ì ? ‚ÌêŠ‚É’l‚ğ–„‚ß‚ñ‚Å‚¢‚é
 	}
 
 	public void showResult(ResultSet r) {
 		try {
 			while(r.next()) {
-				System.out.println("\nï¿½yï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½z"+
+				System.out.println("\nyƒ^ƒCƒgƒ‹z"+
                     r.getString("title")+
-                    "\t" + "ï¿½yï¿½ï¿½Òz"+ r.getString("authorname") + 
-                    "\t" + "ï¿½yï¿½oï¿½ÅĞz"+ r.getString("publishername") + 
-                    "\n" + "ï¿½yï¿½Tï¿½vï¿½z"+ r.getString("summary"));
+                    "\t" + "yìÒz"+ r.getString("authorname") + 
+                    "\t" + "yo”ÅĞz"+ r.getString("publishername") + 
+                    "\n" + "yŠT—vz"+ r.getString("summary"));
 			}
 		} catch (SQLException se) {
 			System.out.println("SQL Error 2phss: " + se.toString() + " "
